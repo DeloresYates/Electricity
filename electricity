@@ -1,0 +1,21 @@
+@override
+      Widget build(BuildContext context) {
+        return Scaffold(
+            appBar: AppBar(
+              title: Text('Syncfusion flutter datagrid'),
+            ),
+            body: FutureBuilder<Object> (
+                future: generateEmployeeList(),
+                builder: (context, data) {
+                  return data.hasData
+                      ? SfDataGrid(
+                          source: employeeDataSource,
+                          columns: _columns,
+                          columnWidthMode: ColumnWidthMode.fill)
+                      : Center(
+                          child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                          value: 0.8,
+                        ));
+                }));
+      }
